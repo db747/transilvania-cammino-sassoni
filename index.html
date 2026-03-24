@@ -1,0 +1,987 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transilvania — Il Cammino dei Sassoni</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;0,800;1,400;1,600&family=DM+Sans:wght@300;400;500;600&family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+:root {
+  --gold: #C4A35A;
+  --gold-light: #E8D5A3;
+  --dark: #1A1A18;
+  --dark-warm: #2A2520;
+  --cream: #F5F0E8;
+  --cream-dark: #E8E0D2;
+  --forest: #3A5A40;
+  --forest-light: #5A7A60;
+  --stone: #8A8070;
+  --rose: #C87D6A;
+  --white: #FEFCF8;
+}
+
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* ===== HERO ===== */
+.hero {
+  min-height: 100vh;
+  background: var(--dark);
+  color: var(--cream);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(ellipse 120% 80% at 20% 80%, rgba(58,90,64,0.3) 0%, transparent 60%),
+    radial-gradient(ellipse 80% 60% at 80% 20%, rgba(196,163,90,0.15) 0%, transparent 50%),
+    linear-gradient(180deg, rgba(26,26,24,0.9) 0%, rgba(42,37,32,0.95) 50%, rgba(26,26,24,1) 100%);
+  z-index: 1;
+}
+
+.hero-bg-pattern {
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(0deg, transparent, transparent 80px, rgba(196,163,90,0.03) 80px, rgba(196,163,90,0.03) 81px),
+    repeating-linear-gradient(90deg, transparent, transparent 80px, rgba(196,163,90,0.03) 80px, rgba(196,163,90,0.03) 81px);
+  z-index: 0;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 2;
+  padding: 2rem;
+  max-width: 900px;
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.35em;
+  text-transform: uppercase;
+  color: var(--gold);
+  border: 1px solid rgba(196,163,90,0.3);
+  padding: 0.5rem 1.5rem;
+  margin-bottom: 2.5rem;
+  font-weight: 500;
+  animation: fadeDown 1s ease-out 0.3s both;
+}
+
+.hero h1 {
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: clamp(2.8rem, 7vw, 5.5rem);
+  line-height: 1.05;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.5rem;
+  animation: fadeUp 1s ease-out 0.5s both;
+}
+
+.hero h1 em {
+  font-style: italic;
+  font-weight: 400;
+  color: var(--gold);
+}
+
+.hero-subtitle {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: 400;
+  font-style: italic;
+  color: var(--gold-light);
+  margin: 1rem 0 2.5rem;
+  line-height: 1.5;
+  animation: fadeUp 1s ease-out 0.7s both;
+}
+
+.hero-dates {
+  font-size: 0.85rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--stone);
+  animation: fadeUp 1s ease-out 0.9s both;
+}
+
+.hero-dates span {
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.hero-scroll {
+  position: absolute;
+  bottom: 2rem;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  color: var(--stone);
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  animation: fadeUp 1s ease-out 1.2s both;
+  text-decoration: none;
+}
+
+.hero-scroll .line {
+  width: 1px;
+  height: 40px;
+  background: linear-gradient(180deg, var(--gold), transparent);
+  animation: scrollPulse 2s ease-in-out infinite;
+}
+
+/* ===== OVERVIEW SECTION ===== */
+.overview {
+  padding: 6rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.section-label {
+  font-size: 0.65rem;
+  letter-spacing: 0.4em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.section-label::before {
+  content: '';
+  width: 30px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.overview-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 4rem;
+  margin-top: 2rem;
+}
+
+.overview-text h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 600;
+  line-height: 1.2;
+  margin-bottom: 1.5rem;
+}
+
+.overview-text p {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--dark-warm);
+  margin-bottom: 1rem;
+}
+
+.overview-highlights {
+  display: grid;
+  gap: 1.5rem;
+  align-content: start;
+}
+
+.highlight-card {
+  background: var(--white);
+  padding: 1.5rem;
+  border-left: 3px solid var(--gold);
+  transition: transform 0.3s ease;
+}
+
+.highlight-card:hover {
+  transform: translateX(5px);
+}
+
+.highlight-card h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  margin-bottom: 0.4rem;
+  color: var(--forest);
+}
+
+.highlight-card p {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--stone);
+}
+
+/* ===== FLIGHTS ===== */
+.flights {
+  background: var(--dark);
+  color: var(--cream);
+  padding: 5rem 2rem;
+}
+
+.flights-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.flight-cards {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-top: 2.5rem;
+}
+
+.flight-card {
+  background: rgba(255,255,255,0.04);
+  border: 1px solid rgba(196,163,90,0.15);
+  padding: 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.flight-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, var(--gold), transparent);
+}
+
+.flight-direction {
+  font-size: 0.65rem;
+  letter-spacing: 0.3em;
+  text-transform: uppercase;
+  color: var(--gold);
+  margin-bottom: 1rem;
+}
+
+.flight-route {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 1.5rem;
+}
+
+.flight-city {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.flight-city small {
+  display: block;
+  font-family: 'DM Sans', sans-serif;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  color: var(--stone);
+  font-weight: 400;
+  margin-top: 0.2rem;
+}
+
+.flight-arrow {
+  color: var(--gold);
+  font-size: 1.2rem;
+  flex-shrink: 0;
+}
+
+.flight-details {
+  display: flex;
+  gap: 2rem;
+  font-size: 0.8rem;
+  color: var(--stone);
+}
+
+.flight-details strong {
+  color: var(--cream);
+  font-weight: 500;
+}
+
+/* ===== ITINERARY ===== */
+.itinerary {
+  padding: 6rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.itinerary h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 600;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.day-card {
+  display: grid;
+  grid-template-columns: 100px 1fr;
+  gap: 2rem;
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px solid var(--cream-dark);
+  position: relative;
+}
+
+.day-card:last-child {
+  border-bottom: none;
+}
+
+.day-marker {
+  text-align: right;
+  padding-top: 0.3rem;
+}
+
+.day-number {
+  font-family: 'Playfair Display', serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+}
+
+.day-date {
+  font-size: 0.7rem;
+  letter-spacing: 0.1em;
+  color: var(--stone);
+  margin-top: 0.3rem;
+}
+
+.day-content h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+}
+
+.day-route-badge {
+  display: inline-block;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--forest);
+  background: rgba(58,90,64,0.08);
+  padding: 0.3rem 0.8rem;
+  margin: 0.5rem 0 1rem;
+  font-weight: 500;
+}
+
+.day-description {
+  font-size: 0.95rem;
+  line-height: 1.8;
+  color: var(--dark-warm);
+  margin-bottom: 1.2rem;
+}
+
+.day-stay {
+  background: var(--white);
+  padding: 1.2rem 1.5rem;
+  border-left: 3px solid var(--forest);
+  margin-top: 0.5rem;
+}
+
+.day-stay h4 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--forest);
+  margin-bottom: 0.3rem;
+}
+
+.day-stay .stay-detail {
+  font-size: 0.85rem;
+  color: var(--stone);
+  line-height: 1.6;
+}
+
+.day-stay .stay-tag {
+  display: inline-block;
+  font-size: 0.65rem;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  background: var(--forest);
+  color: var(--white);
+  padding: 0.15rem 0.5rem;
+  margin-top: 0.4rem;
+  font-weight: 500;
+}
+
+/* ===== PRICING ===== */
+.pricing {
+  background: var(--dark-warm);
+  color: var(--cream);
+  padding: 5rem 2rem;
+}
+
+.pricing-inner {
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.pricing h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.pricing-subtitle {
+  text-align: center;
+  font-size: 0.85rem;
+  color: var(--stone);
+  margin-bottom: 3rem;
+}
+
+.price-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.price-table tr {
+  border-bottom: 1px solid rgba(255,255,255,0.06);
+}
+
+.price-table tr:last-child {
+  border-bottom: 2px solid var(--gold);
+}
+
+.price-table td {
+  padding: 1rem 0;
+  font-size: 0.9rem;
+}
+
+.price-table td:first-child {
+  color: var(--cream);
+  font-weight: 400;
+}
+
+.price-table td:nth-child(2) {
+  text-align: right;
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--gold);
+  width: 100px;
+}
+
+.price-table td:last-child {
+  font-size: 0.75rem;
+  color: var(--stone);
+  padding-left: 1.5rem;
+  max-width: 280px;
+}
+
+.price-total td {
+  padding-top: 1.5rem !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+}
+
+.price-total td:first-child {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem !important;
+}
+
+.price-total td:nth-child(2) {
+  font-size: 1.6rem !important;
+  color: var(--gold-light) !important;
+}
+
+.price-perperson {
+  text-align: center;
+  margin-top: 2rem;
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 1.1rem;
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+/* ===== INCLUDES ===== */
+.includes {
+  padding: 5rem 2rem;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.includes-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  margin-top: 2rem;
+}
+
+.includes-col h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.2rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: var(--forest);
+}
+
+.includes-col.excluded h3 {
+  color: var(--stone);
+}
+
+.includes-col ul {
+  list-style: none;
+  display: grid;
+  gap: 0.8rem;
+}
+
+.includes-col li {
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding-left: 1.5rem;
+  position: relative;
+  color: var(--dark-warm);
+}
+
+.includes-col li::before {
+  position: absolute;
+  left: 0;
+  font-size: 0.8rem;
+}
+
+.includes-col.included li::before {
+  content: '✓';
+  color: var(--forest);
+  font-weight: 700;
+}
+
+.includes-col.excluded li::before {
+  content: '—';
+  color: var(--stone);
+}
+
+/* ===== NOTE ===== */
+.note {
+  background: var(--forest);
+  color: var(--cream);
+  padding: 4rem 2rem;
+  text-align: center;
+}
+
+.note-inner {
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.note h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 1rem;
+}
+
+.note p {
+  font-size: 0.9rem;
+  line-height: 1.8;
+  color: rgba(245,240,232,0.85);
+}
+
+/* ===== FOOTER ===== */
+.footer {
+  background: var(--dark);
+  color: var(--stone);
+  padding: 3rem 2rem;
+  text-align: center;
+}
+
+.footer p {
+  font-size: 0.75rem;
+  letter-spacing: 0.15em;
+  line-height: 1.8;
+}
+
+.footer .gold { color: var(--gold); }
+
+/* ===== ANIMATIONS ===== */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeDown {
+  from { opacity: 0; transform: translateY(-15px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes scrollPulse {
+  0%, 100% { opacity: 0.3; transform: scaleY(1); }
+  50% { opacity: 0.8; transform: scaleY(1.2); }
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== RESPONSIVE ===== */
+@media (max-width: 768px) {
+  .overview-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+  .flight-cards { grid-template-columns: 1fr; }
+  .day-card { grid-template-columns: 70px 1fr; gap: 1rem; }
+  .day-number { font-size: 2.2rem; }
+  .includes-grid { grid-template-columns: 1fr; gap: 2rem; }
+  .flight-details { flex-direction: column; gap: 0.5rem; }
+  .price-table td:last-child { display: none; }
+}
+
+@media (max-width: 480px) {
+  .day-card { grid-template-columns: 1fr; }
+  .day-marker { text-align: left; display: flex; align-items: baseline; gap: 0.8rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ===== HERO ===== -->
+<section class="hero">
+  <div class="hero-bg-pattern"></div>
+  <div class="hero-content">
+    <div class="hero-badge">Via Transilvanica · Terra Saxonum</div>
+    <h1>Transilvania<br><em>Il Cammino dei Sassoni</em></h1>
+    <p class="hero-subtitle">
+      Un viaggio a piedi nel cuore della Transilvania autentica.<br>
+      Villaggi medievali, chiese fortificate UNESCO, cucina a km zero.
+    </p>
+    <p class="hero-dates">
+      <span>28 Luglio — 2 Agosto 2026</span> · 6 giorni · 4 coppie
+    </p>
+  </div>
+  <a href="#panoramica" class="hero-scroll">
+    Scopri
+    <span class="line"></span>
+  </a>
+</section>
+
+<!-- ===== OVERVIEW ===== -->
+<section class="overview" id="panoramica">
+  <div class="section-label">Panoramica</div>
+  <div class="overview-grid">
+    <div class="overview-text fade-in">
+      <h2>La Romania che non vi aspettate</h2>
+      <p>
+        Dimenticate i castelli affollati dai turisti. Questo viaggio vi porta a camminare lungo la <strong>Via Transilvanica</strong>, un sentiero di nuova generazione che attraversa la <em>Terra Saxonum</em>: il cuore sassone della Transilvania, tra villaggi dove il tempo sembra muoversi lateralmente.
+      </p>
+      <p>
+        Camminerete tra foreste di querce secolari, prati fioriti e colline ondulate, dormendo in case sassoni restaurate con cura e mangiando piatti preparati con ingredienti coltivati nei giardini attorno a voi. Ogni sera un villaggio diverso, ogni mattina un nuovo orizzonte.
+      </p>
+      <p>
+        Il percorso è scandito dalle iconiche <strong>borne in andesite</strong> della Via Transilvanica — oltre 1.400 pietre scolpite a mano, una ogni chilometro — e attraversa villaggi dove le cicogne nidificano sopra case color pastello del Settecento.
+      </p>
+    </div>
+    <div class="overview-highlights fade-in">
+      <div class="highlight-card">
+        <h4>Voli diretti</h4>
+        <p>Bologna → Cluj-Napoca in andata, Bucarest → Bologna al ritorno. Nessuno scalo, massima semplicità.</p>
+      </div>
+      <div class="highlight-card">
+        <h4>Transfer privato all'arrivo</h4>
+        <p>Da Cluj-Napoca direttamente a Sighișoara in auto privata (circa 2 ore). Niente stress da primo giorno.</p>
+      </div>
+      <div class="highlight-card">
+        <h4>4 giorni di trekking</h4>
+        <p>Tappe da 11 a 18 km su terreno collinare. Livello medio: servono gambe abituate a 4-5 ore di cammino al giorno.</p>
+      </div>
+      <div class="highlight-card">
+        <h4>Rientro scenografico</h4>
+        <p>L'ultimo giorno, treno panoramico Mediaș → Bucarest attraverso la valle dell'Olt e i Carpazi Meridionali.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FLIGHTS ===== -->
+<section class="flights">
+  <div class="flights-inner">
+    <div class="section-label">Voli · Wizz Air Diretti</div>
+    <div class="flight-cards fade-in">
+      <div class="flight-card">
+        <div class="flight-direction">Andata · 28 Luglio 2026</div>
+        <div class="flight-route">
+          <div class="flight-city">Bologna<small>BLQ · 13:30</small></div>
+          <div class="flight-arrow">✈ →</div>
+          <div class="flight-city">Cluj-Napoca<small>CLJ · 16:20 (ora locale)</small></div>
+        </div>
+        <div class="flight-details">
+          <div>Durata: <strong>1h 50min</strong></div>
+          <div>Compagnia: <strong>Wizz Air</strong></div>
+        </div>
+      </div>
+      <div class="flight-card">
+        <div class="flight-direction">Ritorno · 2 Agosto 2026</div>
+        <div class="flight-route">
+          <div class="flight-city">Bucarest<small>OTP · 22:50</small></div>
+          <div class="flight-arrow">✈ →</div>
+          <div class="flight-city">Bologna<small>BLQ · 23:55 (ora locale)</small></div>
+        </div>
+        <div class="flight-details">
+          <div>Durata: <strong>2h 05min</strong></div>
+          <div>Compagnia: <strong>Wizz Air</strong></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== ITINERARY ===== -->
+<section class="itinerary" id="itinerario">
+  <div class="section-label">Itinerario dettagliato</div>
+  <h2>Sei giorni, cinque villaggi,<br>una storia indimenticabile</h2>
+
+  <!-- Day 0 -->
+  <div class="day-card fade-in">
+    <div class="day-marker">
+      <div class="day-number">0</div>
+      <div class="day-date">28 Lug</div>
+    </div>
+    <div class="day-content">
+      <h3>Benvenuti nella Cittadella</h3>
+      <div class="day-route-badge">Arrivo · Cluj → Sighișoara</div>
+      <p class="day-description">
+        Atterraggio a Cluj-Napoca nel primo pomeriggio e transfer privato con autista verso Sighișoara (circa 2 ore tra colline e paesaggi rurali). Arrivo nella cittadella medievale, una delle meglio conservate d'Europa — fondata dai coloni sassoni nel XII secolo, Patrimonio UNESCO dal 1999. Passeggiata serale tra le stradine acciottolate, la Torre dell'Orologio e le case colorate della fortezza.
+      </p>
+      <div class="day-stay">
+        <h4>Casa Georgius Krauss ★★★★</h4>
+        <p class="stay-detail">
+          Pensione storica del XVI secolo, nel cuore della cittadella UNESCO. Affreschi originali del 1600 riscoperti durante i restauri, soffitti in legno a cassettoni dipinti con motivi floreali. Ristorante con cucina sassone e terrazza panoramica. Rating Booking.com: 9.5 — Travellers' Choice Tripadvisor (top 1%).
+        </p>
+        <span class="stay-tag">Cena tipica sassone inclusa</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 1 -->
+  <div class="day-card fade-in">
+    <div class="day-marker">
+      <div class="day-number">1</div>
+      <div class="day-date">29 Lug</div>
+    </div>
+    <div class="day-content">
+      <h3>Il Sentiero delle Querce</h3>
+      <div class="day-route-badge">Trekking · Sighișoara → Criș · 18 km</div>
+      <p class="day-description">
+        Si esce dalle mura medievali e ci si immerge nelle foreste di querce secolari della Terra Saxonum. Il sentiero segue le borne scolpite della Via Transilvanica attraverso prati a sfalcio, pascoli e radure, con panorami sulle colline ondulate della Transilvania centrale. Il villaggio di Criș è la dimora storica della famiglia Bethlen, che ha abitato questa valle fin dal 1305.
+      </p>
+      <div class="day-stay">
+        <h4>Bethlen Estates Transylvania</h4>
+        <p class="stay-detail">
+          Un progetto di ospitalità diffusa creato dalla famiglia Bethlen — che ha restaurato case sassoni, fienili e cottage del Settecento nel villaggio di Criș, trasformandoli in guesthouse raffinate. Membro di Small Luxury Hotels of the World, con 2 Michelin Keys. Cucina gourmet con prodotti dall'orto e dalle foreste circostanti, lo chef Róbert Tordai prepara piatti che rendono omaggio alla tradizione transilvana.
+        </p>
+        <span class="stay-tag">Cena gourmet + colazione incluse</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 2 -->
+  <div class="day-card fade-in">
+    <div class="day-marker">
+      <div class="day-number">2</div>
+      <div class="day-date">30 Lug</div>
+    </div>
+    <div class="day-content">
+      <h3>Il Borgo del Tempo Sospeso</h3>
+      <div class="day-route-badge">Trekking · Criș → Mălâncrav · 16 km</div>
+      <p class="day-description">
+        Cammino attraverso boschi di querce, prati e strade sterrate fino a Mălâncrav — un villaggio dove il tempo si è fermato. Qui il Mihai Eminescu Trust (la fondazione un tempo sotto il patronato di Re Carlo III) ha restaurato le case sassoni e cura un celebre frutteto biologico di antiche varietà di mele. La chiesa evangelica custodisce dipinti murali gotici del XIV secolo e un altare ligneo con pannelli scolpiti, un autentico gioiello dell'arte transilvana.
+      </p>
+      <div class="day-stay">
+        <h4>Experience Transylvania — Casa sassone a Mălâncrav</h4>
+        <p class="stay-detail">
+          Case tradizionali restaurate dal Mihai Eminescu Trust, arredate con mobili artigianali e gestite da famiglie del villaggio. Cena preparata dalle donne della comunità con ricette tramandate da generazioni e ingredienti dall'orto. Un turismo che sostiene direttamente l'economia locale. Nota: la copertura telefonica è limitata (solo Digi Mobile) — il vero lusso è la disconnessione.
+        </p>
+        <span class="stay-tag">Cena tradizionale + colazione incluse</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 3 -->
+  <div class="day-card fade-in">
+    <div class="day-marker">
+      <div class="day-number">3</div>
+      <div class="day-date">31 Lug</div>
+    </div>
+    <div class="day-content">
+      <h3>La Fortezza Inespugnabile</h3>
+      <div class="day-route-badge">Trekking · Mălâncrav → Biertan · 16 km</div>
+      <p class="day-description">
+        Il percorso attraversa i villaggi di Nou Săsesc e Copșa Mare, tra foreste, prati naturali e strade sterrate. Arrivo a Biertan — dominata dalla sua spettacolare chiesa fortificata a tre cinte murarie concentriche, Patrimonio UNESCO. All'interno: un altare rinascimentale con 28 pannelli scolpiti e la celebre porta con 13 serrature, oltre alla curiosa "prigione coniugale" dove le coppie in crisi venivano rinchiuse per riconciliarsi.
+      </p>
+      <div class="day-stay">
+        <h4>Complex Medieval Unglerus</h4>
+        <p class="stay-detail">
+          Complesso di pensioni in edifici sassoni restaurati, proprio ai piedi della chiesa fortificata UNESCO. Stanze spaziose con soffitti alti, elementi medievali e pavimenti in legno. Il Ristorante Medievale Unglerus, nella sala comune del complesso, propone cucina tipica romena in un'atmosfera d'altri tempi. Parcheggio e giardino privato con possibilità di falò serale.
+        </p>
+        <span class="stay-tag">Cena medievale + colazione incluse</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 4 -->
+  <div class="day-card fade-in">
+    <div class="day-marker">
+      <div class="day-number">4</div>
+      <div class="day-date">1 Ago</div>
+    </div>
+    <div class="day-content">
+      <h3>Vigne e Colline</h3>
+      <div class="day-route-badge">Trekking · Biertan → Richiș · 11 km</div>
+      <p class="day-description">
+        La tappa più breve e dolce del viaggio: un cammino tra colline terrazzate che ricordano i tempi in cui Biertan era un importante centro vinicolo. Si attraversano foreste di querce, faggi e acacie fino a Richiș — un villaggio sassone riscoperto da europei innamorati di questa terra, che hanno trasformato le vecchie case in rifugi di pace. All'arrivo vi aspettano i vigneti locali e la possibilità di una degustazione di vini della zona.
+      </p>
+      <div class="day-stay">
+        <h4>Casa Noah</h4>
+        <p class="stay-detail">
+          Più che un alloggio, un'esperienza di vita. Paul Eugen — sassone transilvano emigrato in Germania e poi tornato per riappropriarsi delle sue radici — ha restaurato con Catrinel cinque case sassoni nel cuore di Richiș. Un cortile privato con pini, alberi da frutto, bandiere di preghiera tibetane e un'atmosfera zen che conquista. La sera, attorno al fuoco, Paul racconta la storia di queste terre. Cena preparata con ingredienti del villaggio, incluso vino e brandy locali.
+        </p>
+        <span class="stay-tag">Serata conviviale + colazione incluse</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- Day 5 -->
+  <div class="day-card fade-in">
+    <div class="day-marker">
+      <div class="day-number">5</div>
+      <div class="day-date">2 Ago</div>
+    </div>
+    <div class="day-content">
+      <h3>Transilvania Express</h3>
+      <div class="day-route-badge">Relax + Treno · Richiș → Mediaș → Bucarest</div>
+      <p class="day-description">
+        Mattinata libera per un'ultima passeggiata nel villaggio e saluti. Breve spostamento in taxi fino a Mediaș (15 minuti), cittadina medievale con la sua Torre dei Trombettieri del XIII secolo. Treno diretto Mediaș → Bucarest: circa 5 ore e mezza attraverso la valle dell'Olt, con panorami che tagliano i Carpazi Meridionali — il modo più scenografico per chiudere il viaggio. Arrivo alla stazione di Bucarest Nord, poi collegamento per l'aeroporto Henri Coandă (metro/bus/taxi) in tempo per il volo serale delle 22:50.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ===== PRICING ===== -->
+<section class="pricing" id="quota">
+  <div class="pricing-inner">
+    <div class="section-label">Quota di partecipazione</div>
+    <h2>Stima per coppia</h2>
+    <p class="pricing-subtitle">Stima indicativa · prezzi soggetti a conferma in fase di prenotazione</p>
+
+    <table class="price-table fade-in">
+      <tr>
+        <td>Voli A/R Wizz Air</td>
+        <td>200 €</td>
+        <td>Prenotazione anticipata, tariffa base + trolley</td>
+      </tr>
+      <tr>
+        <td>5 Notti in mezza pensione</td>
+        <td>550 €</td>
+        <td>Dimore storiche, cena + colazione incluse</td>
+      </tr>
+      <tr>
+        <td>Transfer privato Cluj → Sighișoara</td>
+        <td>70 €</td>
+        <td>Quota coppia (totale ≈ 140 € diviso tra 4 persone)</td>
+      </tr>
+      <tr>
+        <td>Treno e taxi locali</td>
+        <td>60 €</td>
+        <td>Treno 1ª classe Mediaș–Bucarest + spostamenti minori</td>
+      </tr>
+      <tr>
+        <td>Trasporto bagagli (opzionale)</td>
+        <td>80 €</td>
+        <td>Servizio trasferimento zaini tra le tappe</td>
+      </tr>
+      <tr class="price-total">
+        <td>Totale pacchetto</td>
+        <td>960 €</td>
+        <td></td>
+      </tr>
+    </table>
+    <p class="price-perperson">Circa 480 € a persona</p>
+  </div>
+</section>
+
+<!-- ===== INCLUDES ===== -->
+<section class="includes" id="incluso">
+  <div class="section-label">Cosa comprende</div>
+  <div class="includes-grid fade-in">
+    <div class="includes-col included">
+      <h3>Incluso nella quota</h3>
+      <ul>
+        <li>Voli diretti A/R Bologna–Cluj e Bucarest–Bologna</li>
+        <li>Transfer privato con autista all'arrivo</li>
+        <li>5 pernottamenti in dimore storiche e guesthouse selezionate</li>
+        <li>5 cene tipiche e 5 colazioni abbondanti</li>
+        <li>Tracce GPS del percorso e guida digitale della Via Transilvanica</li>
+      </ul>
+    </div>
+    <div class="includes-col excluded">
+      <h3>Non incluso</h3>
+      <ul>
+        <li>Pranzi al sacco (acquistabili nei mercati locali per pochi euro)</li>
+        <li>Bevande extra durante le cene</li>
+        <li>Ingressi a chiese fortificate e musei (2–5 € ciascuno)</li>
+        <li>Assicurazione di viaggio</li>
+        <li>Trasporto bagagli tra le tappe (opzionale, 80 € a coppia)</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<!-- ===== NOTE ===== -->
+<section class="note">
+  <div class="note-inner fade-in">
+    <h3>Nota importante sull'equipaggiamento</h3>
+    <p>
+      Il trekking si svolge su terreno collinare con dislivelli tra 400 e 800 metri per tappa. Indispensabili: scarponi da trekking impermeabili e già rodati, bastoncini, zaino da 30–40 litri, giacca impermeabile, e almeno 1 litro d'acqua per tappa. Luglio in Transilvania è caldo di giorno (25–30°C) ma le sere in collina possono rinfrescare. Consigliato un primo strato tecnico di ricambio.
+    </p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="footer">
+  <p>
+    <span class="gold">Via Transilvanica · Terra Saxonum</span><br>
+    Proposta di viaggio curata con passione<br>
+    28 Luglio — 2 Agosto 2026
+  </p>
+</footer>
+
+<script>
+// Intersection Observer for fade-in animations
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
+
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+</body>
+</html>
