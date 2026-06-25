@@ -598,6 +598,27 @@ body {
   color: rgba(245,240,232,0.85);
 }
 
+/* ===== MAPPA ===== */
+.map-section {
+  background: var(--cream);
+  padding: 5rem 2rem 0;
+}
+
+.map-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+#map {
+  height: 500px;
+  width: 100%;
+  border: 1px solid var(--cream-dark);
+}
+
+@media (max-width: 768px) {
+  #map { height: 360px; }
+}
+
 /* ===== FOOTER ===== */
 .footer {
   background: var(--dark);
@@ -951,6 +972,16 @@ body {
   </div>
 </section>
 
+<!-- ===== MAPPA ===== -->
+<section class="map-section" id="mappa">
+  <div class="map-inner">
+    <div class="section-label" style="color:var(--gold);padding:0 0 1.5rem 0;">Il Percorso</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:600;margin-bottom:0.5rem;">Da Sighișoara a Richiș</h2>
+    <p style="font-size:0.85rem;color:var(--stone);margin-bottom:1.5rem;">Via Transilvanica · Terra Saxonum · ~61 km a piedi</p>
+    <div id="map"></div>
+  </div>
+</section>
+
 <!-- ===== NOTE ===== -->
 <section class="note">
   <div class="note-inner fade-in">
@@ -970,6 +1001,8 @@ body {
   </p>
 </footer>
 
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
 <script>
 // Intersection Observer for fade-in animations
 const observer = new IntersectionObserver((entries) => {
@@ -981,6 +1014,47 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// ===== MAPPA =====
+const stops = [
+  { name: 'Sighișoara', lat: 46.2197, lng: 24.7927, day: '22 lug', desc: 'Arrivo · Cittadella UNESCO', color: '#C4A35A' },
+  { name: 'Criș',       lat: 46.1100, lng: 24.6750, day: '23 lug', desc: 'Trek 18 km · Bethlen Estates', color: '#3A5A40' },
+  { name: 'Mălâncrav',  lat: 46.0750, lng: 24.6180, day: '24 lug', desc: 'Trek 16 km · Case MET', color: '#3A5A40' },
+  { name: 'Biertan',    lat: 46.1370, lng: 24.5180, day: '25 lug', desc: 'Trek 16 km · Chiesa UNESCO', color: '#3A5A40' },
+  { name: 'Richiș',     lat: 46.0890, lng: 24.4450, day: '26 lug', desc: 'Trek 11 km · Casa Noah', color: '#3A5A40' },
+  { name: 'Mediaș',     lat: 46.1578, lng: 24.3522, day: '26/27 lug', desc: 'Stazione · Treno → Bucarest', color: '#C87D6A' },
+];
+
+const map = L.map('map', { zoomControl: true, scrollWheelZoom: false });
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '© OpenStreetMap © CARTO',
+  maxZoom: 14
+}).addTo(map);
+
+const latlngs = stops.map(s => [s.lat, s.lng]);
+L.polyline(latlngs, { color: '#C4A35A', weight: 3, opacity: 0.8, dashArray: '6,4' }).addTo(map);
+
+stops.forEach((s, i) => {
+  const isFirst = i === 0;
+  const isLast = i === stops.length - 1;
+  const size = (isFirst || isLast) ? 14 : 10;
+  const icon = L.divIcon({
+    className: '',
+    html: `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${s.color};border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.3)"></div>`,
+    iconAnchor: [size/2, size/2]
+  });
+  L.marker([s.lat, s.lng], { icon })
+    .addTo(map)
+    .bindPopup(`<strong style="font-family:serif;font-size:1rem">${s.name}</strong><br><span style="font-size:0.75rem;color:#888">${s.day}</span><br><span style="font-size:0.8rem">${s.desc}</span>`);
+
+  L.tooltip({ permanent: true, direction: i % 2 === 0 ? 'right' : 'left', offset: [8, 0], className: 'map-label' })
+    .setContent(`<span style="font-size:0.7rem;font-weight:600;color:#1A1A18;letter-spacing:0.05em">${s.name}</span>`)
+    .setLatLng([s.lat, s.lng])
+    .addTo(map);
+});
+
+map.fitBounds(L.latLngBounds(latlngs), { padding: [40, 40] });
 </script>
 
 </body>
