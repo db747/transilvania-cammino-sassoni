@@ -651,6 +651,71 @@ body {
   #map, #map-trek { height: 360px; }
 }
 
+/* ===== TODO ===== */
+.todo {
+  padding: 6rem 2rem;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.todo h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: clamp(1.8rem, 3vw, 2.5rem);
+  font-weight: 600;
+  margin-bottom: 3rem;
+  text-align: center;
+}
+
+.todo-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2.5rem;
+}
+
+.todo-col h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 1.2rem;
+  color: var(--forest);
+}
+
+.todo-col ul {
+  list-style: none;
+  display: grid;
+  gap: 0.9rem;
+}
+
+.todo-item {
+  background: var(--white);
+  border-left: 3px solid var(--gold);
+  padding: 1rem 1.2rem;
+  display: flex;
+  align-items: flex-start;
+  gap: 0.7rem;
+  cursor: pointer;
+}
+
+.todo-item input[type="checkbox"] {
+  margin-top: 0.2rem;
+  width: 16px;
+  height: 16px;
+  flex-shrink: 0;
+  accent-color: var(--forest);
+  cursor: pointer;
+}
+
+.todo-item .todo-text {
+  font-size: 0.85rem;
+  line-height: 1.6;
+  color: var(--dark-warm);
+}
+
+.todo-item.done .todo-text {
+  text-decoration: line-through;
+  color: var(--stone);
+}
+
 /* ===== FOOTER ===== */
 .footer {
   background: var(--dark);
@@ -703,6 +768,7 @@ body {
   .includes-grid { grid-template-columns: 1fr; gap: 2rem; }
   .flight-details { flex-direction: column; gap: 0.5rem; }
   .price-table td:last-child { display: none; }
+  .todo-grid { grid-template-columns: 1fr; gap: 2rem; }
 }
 
 @media (max-width: 480px) {
@@ -969,6 +1035,77 @@ body {
   </div>
 </section>
 
+<!-- ===== TODO ===== -->
+<section class="todo" id="todo">
+  <div class="section-label">Cose da fare</div>
+  <h2>To-do list</h2>
+  <div class="todo-grid fade-in">
+    <div class="todo-col">
+      <h3>🍽️ Cene</h3>
+      <ul>
+        <li class="todo-item" data-id="cena-floresti">
+          <input type="checkbox" id="cena-floresti">
+          <label class="todo-text" for="cena-floresti">24/7 Florești — nessun ristorante trovato in paese. Comprare provviste a Sighișoara prima di partire, oppure contattare l'host (+40757019993) per chiedere se può preparare qualcosa</label>
+        </li>
+        <li class="todo-item" data-id="cena-biertan">
+          <input type="checkbox" id="cena-biertan">
+          <label class="todo-text" for="cena-biertan">25/7 Biertan — Unglerus Medieval Restaurant confermato aperto, ma non prenotato. Da valutare se prenotare (è comunque il punto di riferimento del villaggio, poco rischio di trovarlo pieno)</label>
+        </li>
+        <li class="todo-item" data-id="cena-sighisoara">
+          <input type="checkbox" id="cena-sighisoara">
+          <label class="todo-text" for="cena-sighisoara">23/7 Sighișoara (Von Graf) — l'hotel ha ristorante proprio, verificare se serve prenotazione per cena o solo colazione inclusa</label>
+        </li>
+        <li class="todo-item" data-id="cena-cluj">
+          <input type="checkbox" id="cena-cluj">
+          <label class="todo-text" for="cena-cluj">26/7 Cluj-Napoca (Hampton) — colazione inclusa, ma niente cena in hotel da confermare. Città grande, basso rischio: si può decidere sul posto</label>
+        </li>
+      </ul>
+    </div>
+    <div class="todo-col">
+      <h3>🎫 Biglietti</h3>
+      <ul>
+        <li class="todo-item" data-id="ticket-biertan">
+          <input type="checkbox" id="ticket-biertan">
+          <label class="todo-text" for="ticket-biertan">Ingresso chiesa fortificata di Biertan (UNESCO)</label>
+        </li>
+        <li class="todo-item" data-id="ticket-sighisoara">
+          <input type="checkbox" id="ticket-sighisoara">
+          <label class="todo-text" for="ticket-sighisoara">Ingresso Torre dell'Orologio / museo cittadella Sighișoara</label>
+        </li>
+        <li class="todo-item" data-id="ticket-malancrav">
+          <input type="checkbox" id="ticket-malancrav">
+          <label class="todo-text" for="ticket-malancrav">Chiesa e frutteto Mălâncrav (sosta di passaggio il 25/7 — verificare se richiede biglietto o donazione)</label>
+        </li>
+        <li class="todo-item" data-id="ticket-assicurazione">
+          <input type="checkbox" id="ticket-assicurazione">
+          <label class="todo-text" for="ticket-assicurazione">Assicurazione di viaggio — ancora da fare, mai affrontata finora</label>
+        </li>
+      </ul>
+    </div>
+    <div class="todo-col">
+      <h3>🚗 Transfer</h3>
+      <ul>
+        <li class="todo-item" data-id="transfer-arrivo">
+          <input type="checkbox" id="transfer-arrivo">
+          <label class="todo-text" for="transfer-arrivo">Cluj-Napoca Airport → Sighișoara (23/7) — opzioni trovate (Suntransfers, Shuttledirect, City Airport Taxis, Transfeero), da prenotare</label>
+        </li>
+        <li class="todo-item" data-id="transfer-rientro">
+          <input type="checkbox" id="transfer-rientro">
+          <label class="todo-text" for="transfer-rientro">Richiș → Cluj-Napoca (26/7) — punto di ritiro a Richiș, non più a Biertan; da prenotare (GetTransfer o contatto locale)</label>
+        </li>
+        <li class="todo-item" data-id="transfer-taxi">
+          <input type="checkbox" id="transfer-taxi">
+          <label class="todo-text" for="transfer-taxi">Contatto per taxi di riserva nei due giorni di trekking lungo (24/7 e 25/7, oltre 20 km) in caso di stanchezza — chiedere agli host di Florești/Biertan un nominativo locale</label>
+        </li>
+        <li class="todo-item" data-id="transfer-bagagli">
+          <input type="checkbox" id="transfer-bagagli">
+          <label class="todo-text" for="transfer-bagagli">Trasporto bagagli tra le tappe (opzionale) — se serve, va organizzato con lo stesso circuito</label>
+        </li>
+      </ul>
+    </div>
+  </div>
+</section>
+
 <!-- ===== FOOTER ===== -->
 <footer class="footer">
   <p>
@@ -991,6 +1128,24 @@ const observer = new IntersectionObserver((entries) => {
 }, { threshold: 0.1, rootMargin: '0px 0px -50px 0px' });
 
 document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+// To-do list checkbox persistence
+const TODO_STORAGE_KEY = 'transilvania-2026-todo';
+const todoState = JSON.parse(localStorage.getItem(TODO_STORAGE_KEY) || '{}');
+
+document.querySelectorAll('.todo-item').forEach(item => {
+  const id = item.dataset.id;
+  const checkbox = item.querySelector('input[type="checkbox"]');
+  if (todoState[id]) {
+    checkbox.checked = true;
+    item.classList.add('done');
+  }
+  checkbox.addEventListener('change', () => {
+    todoState[id] = checkbox.checked;
+    item.classList.toggle('done', checkbox.checked);
+    localStorage.setItem(TODO_STORAGE_KEY, JSON.stringify(todoState));
+  });
+});
 
 // ===== MAPPA =====
 const stops = [
