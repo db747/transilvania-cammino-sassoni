@@ -609,14 +609,14 @@ body {
   margin: 0 auto;
 }
 
-#map {
+#map, #map-trek {
   height: 500px;
   width: 100%;
   border: 1px solid var(--cream-dark);
 }
 
 @media (max-width: 768px) {
-  #map { height: 360px; }
+  #map, #map-trek { height: 360px; }
 }
 
 /* ===== FOOTER ===== */
@@ -907,13 +907,23 @@ body {
   </div>
 </section>
 
-<!-- ===== MAPPA ===== -->
+<!-- ===== MAPPA GENERALE ===== -->
 <section class="map-section" id="mappa">
   <div class="map-inner">
-    <div class="section-label" style="color:var(--gold);padding:0 0 1.5rem 0;">Il Percorso</div>
-    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:600;margin-bottom:0.5rem;">Da Sighișoara a Biertan</h2>
-    <p style="font-size:0.85rem;color:var(--stone);margin-bottom:1.5rem;">Via Transilvanica · Terra Saxonum · ~43 km a piedi (GPX ufficiale) · A/R da Cluj-Napoca</p>
+    <div class="section-label" style="color:var(--gold);padding:0 0 1.5rem 0;">Mappa Generale</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:600;margin-bottom:0.5rem;">Il viaggio, dall'aeroporto al rientro</h2>
+    <p style="font-size:0.85rem;color:var(--stone);margin-bottom:1.5rem;">Cluj-Napoca ↔ Sighișoara ↔ Biertan · voli e transfer in auto</p>
     <div id="map"></div>
+  </div>
+</section>
+
+<!-- ===== MAPPA TREKKING ===== -->
+<section class="map-section" id="mappa-trekking">
+  <div class="map-inner">
+    <div class="section-label" style="color:var(--gold);padding:0 0 1.5rem 0;">Mappa del Trekking</div>
+    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:600;margin-bottom:0.5rem;">Da Sighișoara a Biertan a piedi</h2>
+    <p style="font-size:0.85rem;color:var(--stone);margin-bottom:1.5rem;">~43 km su 2 giorni (GPX ufficiale) · borghi grandi = notte, borghi piccoli = sosta lungo il percorso</p>
+    <div id="map-trek"></div>
   </div>
 </section>
 
@@ -999,6 +1009,49 @@ stops.forEach((s, i) => {
 });
 
 map.fitBounds(L.latLngBounds(stops.map(s => [s.lat, s.lng])), { padding: [40, 40] });
+
+// ===== MAPPA TREKKING =====
+const trekStops = [
+  { name: 'Sighișoara', lat: 46.2197, lng: 24.7927, day: '24 lug · partenza', desc: 'Partenza · Cittadella UNESCO', type: 'notte' },
+  { name: 'Criș',       lat: 46.1433, lng: 24.6939, day: '24 lug', desc: 'Sosta di passaggio · dimora Bethlen', type: 'sosta' },
+  { name: 'Florești',   lat: 46.1608, lng: 24.6631, day: '24/25 lug · notte', desc: 'Fine tappa 1 (21,6 km) · Floresti House 21', type: 'notte' },
+  { name: 'Mălâncrav',  lat: 46.1083, lng: 24.6500, day: '25 lug', desc: 'Sosta di passaggio · chiesa e frutteto MET', type: 'sosta' },
+  { name: 'Nou Săsesc', lat: 46.1167, lng: 24.6000, day: '25 lug', desc: 'Sosta di passaggio', type: 'sosta' },
+  { name: 'Copșa Mare', lat: 46.1333, lng: 24.5500, day: '25 lug', desc: 'Sosta di passaggio', type: 'sosta' },
+  { name: 'Biertan',    lat: 46.1333, lng: 24.5167, day: '25/26 lug · arrivo', desc: 'Fine tappa 2 (21,35 km) · Biertan 48 Guesthouse', type: 'notte' },
+];
+
+const mapTrek = L.map('map-trek', { zoomControl: true, scrollWheelZoom: false });
+
+L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+  attribution: '© OpenStreetMap © CARTO',
+  maxZoom: 15
+}).addTo(mapTrek);
+
+L.polyline(trekStops.map(s => [s.lat, s.lng]), {
+  color: '#C4A35A', weight: 3, opacity: 0.9, dashArray: '6,4'
+}).addTo(mapTrek);
+
+trekStops.forEach((s, i) => {
+  const isNotte = s.type === 'notte';
+  const size = isNotte ? 16 : 9;
+  const color = isNotte ? '#3A5A40' : '#8A8070';
+  const icon = L.divIcon({
+    className: '',
+    html: `<div style="width:${size}px;height:${size}px;border-radius:50%;background:${color};border:2px solid white;box-shadow:0 1px 4px rgba(0,0,0,0.3)"></div>`,
+    iconAnchor: [size/2, size/2]
+  });
+  L.marker([s.lat, s.lng], { icon })
+    .addTo(mapTrek)
+    .bindPopup(`<strong style="font-family:serif;font-size:1rem">${s.name}</strong><br><span style="font-size:0.75rem;color:#888">${s.day}</span><br><span style="font-size:0.8rem">${s.desc}</span>`);
+
+  L.tooltip({ permanent: true, direction: i % 2 === 0 ? 'right' : 'left', offset: [8, 0], className: 'map-label' })
+    .setContent(`<span style="font-size:${isNotte ? '0.7rem' : '0.6rem'};font-weight:${isNotte ? '700' : '500'};color:#1A1A18;letter-spacing:0.05em">${s.name}</span>`)
+    .setLatLng([s.lat, s.lng])
+    .addTo(mapTrek);
+});
+
+mapTrek.fitBounds(L.latLngBounds(trekStops.map(s => [s.lat, s.lng])), { padding: [40, 40] });
 </script>
 
 </body>
