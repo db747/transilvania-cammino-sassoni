@@ -728,7 +728,7 @@ body {
       </div>
       <div class="highlight-card">
         <h4>3 giorni di trekking</h4>
-        <p>Tappe da 16 a 18 km su terreno collinare, ~50 km totali. Livello medio: servono gambe abituate a 4-5 ore di cammino al giorno.</p>
+        <p>Tappe da 12 a 16 km su terreno collinare, ~43 km totali (verificati su GPX ufficiale). Livello medio: servono gambe abituate a 3-4 ore di cammino al giorno.</p>
       </div>
       <div class="highlight-card">
         <h4>Rientro diretto</h4>
@@ -806,7 +806,7 @@ body {
     </div>
     <div class="day-content">
       <h3>Il Sentiero delle Querce</h3>
-      <div class="day-route-badge">Trekking · Sighișoara → Criș · 18 km</div>
+      <div class="day-route-badge">Trekking · Sighișoara → Criș · 15,7 km</div>
       <p class="day-description">
         Si esce dalle mura medievali e ci si immerge nelle foreste di querce secolari della Terra Saxonum. Il sentiero segue le borne scolpite della Via Transilvanica attraverso prati a sfalcio, pascoli e radure, con panorami sulle colline ondulate della Transilvania centrale. Il villaggio di Criș è la dimora storica della famiglia Bethlen, che ha abitato questa valle fin dal 1305.
       </p>
@@ -828,7 +828,7 @@ body {
     </div>
     <div class="day-content">
       <h3>Il Borgo del Tempo Sospeso</h3>
-      <div class="day-route-badge">Trekking · Criș → Mălâncrav · 16 km</div>
+      <div class="day-route-badge">Trekking · Criș → Mălâncrav · 12,3 km</div>
       <p class="day-description">
         Cammino attraverso boschi di querce, prati e strade sterrate fino a Mălâncrav — un villaggio dove il tempo si è fermato. Qui il Mihai Eminescu Trust (la fondazione un tempo sotto il patronato di Re Carlo III) ha restaurato le case sassoni e cura un celebre frutteto biologico di antiche varietà di mele. La chiesa evangelica custodisce dipinti murali gotici del XIV secolo e un altare ligneo con pannelli scolpiti, un autentico gioiello dell'arte transilvana.
       </p>
@@ -850,7 +850,7 @@ body {
     </div>
     <div class="day-content">
       <h3>La Fortezza Inespugnabile</h3>
-      <div class="day-route-badge">Trekking · Mălâncrav → Biertan · 16 km</div>
+      <div class="day-route-badge">Trekking · Mălâncrav → Biertan · 14,9 km</div>
       <p class="day-description">
         Il percorso attraversa i villaggi di Nou Săsesc e Copșa Mare, tra foreste, prati naturali e strade sterrate. Arrivo a Biertan — dominata dalla sua spettacolare chiesa fortificata a tre cinte murarie concentriche, Patrimonio UNESCO. All'interno: un altare rinascimentale con 28 pannelli scolpiti e la celebre porta con 13 serrature, oltre alla curiosa "prigione coniugale" dove le coppie in crisi venivano rinchiuse per riconciliarsi. Nel pomeriggio, dopo la visita alla chiesa, transfer privato a Cluj-Napoca (circa 2 ore, 135 km) per l'ultima notte, in vista del volo di rientro del giorno seguente.
       </p>
@@ -955,7 +955,7 @@ body {
   <div class="map-inner">
     <div class="section-label" style="color:var(--gold);padding:0 0 1.5rem 0;">Il Percorso</div>
     <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,3vw,2.5rem);font-weight:600;margin-bottom:0.5rem;">Da Sighișoara a Biertan</h2>
-    <p style="font-size:0.85rem;color:var(--stone);margin-bottom:1.5rem;">Via Transilvanica · Terra Saxonum · ~50 km a piedi · A/R da Cluj-Napoca</p>
+    <p style="font-size:0.85rem;color:var(--stone);margin-bottom:1.5rem;">Via Transilvanica · Terra Saxonum · ~43 km a piedi (GPX ufficiale) · A/R da Cluj-Napoca</p>
     <div id="map"></div>
   </div>
 </section>
@@ -997,9 +997,9 @@ document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
 const stops = [
   { name: 'Cluj-Napoca', lat: 46.7712, lng: 23.6236, day: '23 e 27 lug', desc: 'Aeroporto · Andata 23/7, ritorno 27/7 ore 12:00', color: '#C87D6A' },
   { name: 'Sighișoara',  lat: 46.2197, lng: 24.7927, day: '23 lug', desc: 'Arrivo · Cittadella UNESCO', color: '#C4A35A' },
-  { name: 'Criș',        lat: 46.1100, lng: 24.6750, day: '24 lug', desc: 'Trek 18 km · Pensiunea Sonnenhof', color: '#3A5A40' },
-  { name: 'Mălâncrav',   lat: 46.0750, lng: 24.6180, day: '25 lug', desc: 'Trek 16 km · Case MET', color: '#3A5A40' },
-  { name: 'Biertan',     lat: 46.1370, lng: 24.5180, day: '26 lug', desc: 'Trek 16 km · Chiesa UNESCO · visita pomeridiana, no pernotto', color: '#3A5A40' },
+  { name: 'Criș',        lat: 46.1433, lng: 24.6939, day: '24 lug', desc: 'Trek 15,7 km · Pensiunea Sonnenhof', color: '#3A5A40' },
+  { name: 'Mălâncrav',   lat: 46.1083, lng: 24.6500, day: '25 lug', desc: 'Trek 12,3 km · Case MET', color: '#3A5A40' },
+  { name: 'Biertan',     lat: 46.1333, lng: 24.5167, day: '26 lug', desc: 'Trek 14,9 km · Chiesa UNESCO · visita pomeridiana, no pernotto', color: '#3A5A40' },
 ];
 
 const map = L.map('map', { zoomControl: true, scrollWheelZoom: false });
