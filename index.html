@@ -880,64 +880,6 @@ body {
   </div>
 </section>
 
-<!-- ===== PRICING ===== -->
-<section class="pricing" id="quota">
-  <div class="pricing-inner">
-    <div class="section-label">Quota di partecipazione</div>
-    <h2>Stima per la famiglia</h2>
-    <p class="pricing-subtitle">3 persone · Donato, Angela, Emma · voli e 2 alloggi già confermati</p>
-
-    <table class="price-table fade-in">
-      <tr>
-        <td>Voli A/R Wizz Air</td>
-        <td>480 €</td>
-        <td>Bologna ↔ Cluj-Napoca, 3 persone — confermato</td>
-      </tr>
-      <tr>
-        <td>Floresti House 21</td>
-        <td>107 €</td>
-        <td>540 lei · 1 notte · confermato (n. 5342817091)</td>
-      </tr>
-      <tr>
-        <td>Biertan 48 Guesthouse</td>
-        <td>100 €</td>
-        <td>504,50 lei · 1 notte · confermato (n. 6178182584)</td>
-      </tr>
-      <tr>
-        <td>Boutique Hotel von Graf</td>
-        <td>~110 € stimati</td>
-        <td>1 notte · confermato (n. 6921439154), prezzo da recuperare</td>
-      </tr>
-      <tr>
-        <td>Hampton by Hilton Cluj-Napoca</td>
-        <td>~110 € stimati</td>
-        <td>1 notte, colazione inclusa · confermato (n. 6144927433), prezzo da recuperare</td>
-      </tr>
-      <tr>
-        <td>Transfer privato Cluj → Sighișoara</td>
-        <td>~140 €</td>
-        <td>Auto intera, 153 km, ~2h15</td>
-      </tr>
-      <tr>
-        <td>Transfer privato Biertan → Cluj-Napoca</td>
-        <td>~140 €</td>
-        <td>Auto intera, 135 km, ~2h · shuttle Hampton (35€/tratta) forse solo per tragitti brevi, da verificare</td>
-      </tr>
-      <tr>
-        <td>Trasporto bagagli (opzionale)</td>
-        <td>~50 €</td>
-        <td>2 trasferimenti zaini tra le tappe di trekking</td>
-      </tr>
-      <tr class="price-total">
-        <td>Totale pacchetto</td>
-        <td>~1.240 €</td>
-        <td></td>
-      </tr>
-    </table>
-    <p class="price-perperson">Circa 413 € a persona</p>
-  </div>
-</section>
-
 <!-- ===== INCLUDES ===== -->
 <section class="includes" id="incluso">
   <div class="section-label">Cosa comprende</div>
@@ -1013,8 +955,7 @@ const stops = [
   { name: 'Cluj-Napoca', lat: 46.7712, lng: 23.6236, day: '23 e 26/27 lug', desc: 'Aeroporto · Andata 23/7, notte 26/7, volo 27/7 ore 12:00', color: '#C87D6A' },
   { name: 'Sighișoara',  lat: 46.2197, lng: 24.7927, day: '23 lug', desc: 'Arrivo · Cittadella UNESCO · Boutique Hotel von Graf', color: '#C4A35A' },
   { name: 'Florești',    lat: 46.1608, lng: 24.6631, day: '24 lug', desc: 'Trek 21,6 km · Floresti House 21', color: '#3A5A40' },
-  { name: 'Mălâncrav',   lat: 46.1083, lng: 24.6500, day: '25 lug', desc: 'Solo di passaggio · chiesa e frutteto MET', color: '#8A8070' },
-  { name: 'Biertan',     lat: 46.1333, lng: 24.5167, day: '25/26 lug', desc: 'Trek 21,35 km · Chiesa UNESCO · Biertan 48 Guesthouse', color: '#3A5A40' },
+  { name: 'Biertan',     lat: 46.1333, lng: 24.5167, day: '25/26 lug', desc: 'Trek 21,35 km (via Mălâncrav) · Chiesa UNESCO · Biertan 48 Guesthouse', color: '#3A5A40' },
 ];
 
 const map = L.map('map', { zoomControl: true, scrollWheelZoom: false });
@@ -1024,10 +965,10 @@ L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
   maxZoom: 14
 }).addTo(map);
 
-const cluj = stops[0], sighisoara = stops[1], floresti = stops[2], malancrav = stops[3], biertan = stops[4];
+const cluj = stops[0], sighisoara = stops[1], floresti = stops[2], biertan = stops[3];
 
-// Tappe a piedi (oro) — Mălâncrav è di passaggio, non pernotto
-L.polyline([sighisoara, floresti, malancrav, biertan].map(s => [s.lat, s.lng]), {
+// Tappe a piedi (oro)
+L.polyline([sighisoara, floresti, biertan].map(s => [s.lat, s.lng]), {
   color: '#C4A35A', weight: 3, opacity: 0.9, dashArray: '6,4'
 }).addTo(map);
 
